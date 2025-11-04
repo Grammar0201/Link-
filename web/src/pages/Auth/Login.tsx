@@ -1,4 +1,4 @@
-`import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Card, Form, Input, Button, Typography, message } from 'antd';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { login } from '@/services/auth';
