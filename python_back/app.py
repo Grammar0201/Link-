@@ -17,6 +17,12 @@ import ollama  # 直接导入ollama用于诊断
 
 app = Flask(__name__)
 
+# Database connection configuration via environment variables
+DB_HOST = os.environ.get("DB_HOST", "localhost")
+DB_USER = os.environ.get("DB_USER", "root")
+DB_PASSWORD = os.environ.get("DB_PASSWORD", "")
+DB_NAME = os.environ.get("DB_NAME", "linknote")
+
 
 # 自定义嵌入模型类
 class SentenceTransformerEmbeddings:
@@ -30,13 +36,13 @@ class SentenceTransformerEmbeddings:
         return self.model.encode([text])[0].tolist()
 
 
-# 连接 MySQL 数据库
+# Connect to MySQL database using environment-driven config
 def connect_to_mysql():
     connection = pymysql.connect(
-        host='rm-2zea00ucvi56uf86mto.mysql.rds.aliyuncs.com',
-        user='root1',
-        password='linkNote123456@',
-        database='linknote',
+        host=DB_HOST,
+        user=DB_USER,
+        password=DB_PASSWORD,
+        database=DB_NAME,
         cursorclass=pymysql.cursors.DictCursor
     )
     return connection

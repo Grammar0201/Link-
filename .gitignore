@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Environment configuration
+.env*
+web/.env.development
+web/.env.production
